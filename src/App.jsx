@@ -1,21 +1,22 @@
 import AppName from "./components/AppName";
 import AddTodo from "./components/AddTodo";
-import TodoItem from "./components/TodoItem";
-
-import "./App.css";
+import ItemContainer from "./components/ItemContainer";
 
 function App() {
+  const aList = [
+    { id: 1, name: "Buy Coffee", dueDate: "10/12/2024" },
+    { id: 2, name: "Go to College", dueDate: "10/12/2024" },
+  ];
   return (
-    <div className="vh-100">
+    <>
       <header className="bg-success p-5 w-100 bg-primary py-3">
         <AppName />
       </header>
-      <div class="container text-start mt-5">
+      <div className="container text-start mt-5">
         <AddTodo />
-        <TodoItem />
-        <TodoItem />
+        <ItemContainer todoList={aList} />
       </div>
-    </div>
+    </>
   );
 }
 
