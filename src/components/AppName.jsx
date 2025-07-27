@@ -1,5 +1,4 @@
-function AppName() {
-  let appName = "Todo React App";
+function AppName({ appName }) {
   return (
     <>
       <h1 className="text-secondary text-uppercase text-white text-center">
