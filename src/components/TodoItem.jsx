@@ -1,4 +1,4 @@
-import styles from "./TodoItem.module.css";
+// import styles from "./TodoItem.module.css";
 
 function TodoItem({ id, itemName, itemDate, handleDelTodo }) {
   return (

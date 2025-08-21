@@ -1,45 +1,52 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { MdAddBox } from "react-icons/md";
 
 function AddTodo({ handleAddtodo }) {
-  const [todoName, setTodoName] = useState();
-  const [todoDate, setTodoDate] = useState();
+  // const [todoName, setTodoName] = useState("");
+  // const [todoDate, setTodoDate] = useState("");
+  const inputNameRef = useRef("");
+  const inputDateRef = useRef("");
 
-  const handleOnClickAddTodo = () => {
-    handleAddtodo(todoName, todoDate);
-    setTodoName("");
-    setTodoDate("");
+  const handleOnClickAddTodo = (event) => {
+    event.preventDefault(); //it prevents the default behaviour of sending data to server via action attribute while submitting the form
+    // handleAddtodo(todoName, todoDate);
+    // setTodoName("");
+    // setTodoDate("");
+
+    handleAddtodo(inputNameRef.current.value, inputDateRef.current.value);
+    inputNameRef.current.value = "";
+    inputDateRef.current.value = "";
   };
   return (
     <>
-      <div className="row mb-4">
+      <form className="row mb-4" onSubmit={handleOnClickAddTodo}>
         <div className="col-6 gx-1">
           <input
             type="text"
             className="form-control rounded-0 border border-secondary"
             placeholder="Enter Todo Here"
-            onChange={(e) => setTodoName(e.target.value)}
-            value={todoName}
+            ref={inputNameRef}
+            // onChange={(e) => setTodoName(e.target.value)}
+            // value={todoName}
           />
         </div>
         <div className="col-4 gx-1">
           <input
             type="date"
             className="form-control rounded-0 border border-secondary"
-            onChange={(e) => setTodoDate(e.target.value)}
-            value={todoDate}
+            ref={inputDateRef}
+            // onChange={(e) => setTodoDate(e.target.value)}
+            // value={todoDate}
           />
         </div>
         <div className="col-2 text-start">
-          <button
-            type="button"
-            className="btn btn-success width rounded-0"
-            onClick={handleOnClickAddTodo}
-          >
-            <i className="bi bi-plus-circle"></i>
+          <button type="submit" className="btn btn-success width rounded-0">
+            {/* <i className="bi bi-plus-circle"></i> */}
+            <MdAddBox />
             <span className="d-none d-md-inline">Add</span>
           </button>
         </div>
-      </div>
+      </form>
     </>
   );
 }

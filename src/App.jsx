@@ -17,17 +17,17 @@ function App() {
   const handleTodos = (todoName, todoDate) => {
     if (todoName && todoDate) {
       let randId = Math.floor(Math.random() * 9999 + 1);
-      const newTodos = [
-        ...todoS,
+      //updating state based on the previous state as react may not update the current value due to its asynchronous nature.
+      setTodoS((currentTodoS) => [
+        ...currentTodoS,
         { id: randId, name: todoName, dueDate: todoDate },
-      ];
-      setTodoS(newTodos);
+      ]);
     }
   };
 
   const handleDelTodos = (id) => {
-    const newTodos = todoS.filter((todo) => todo.id !== id);
-    setTodoS(newTodos);
+    //updating state based on the previous state as react may not update the current value due to its asynchronous nature.
+    setTodoS((currentTodos) => currentTodos.filter((todo) => todo.id !== id));
   };
 
   return (
@@ -37,7 +37,7 @@ function App() {
       </header>
       <div className={`${styles["my-container"]} text-start mt-5`}>
         <AddTodo handleAddtodo={handleTodos} />
-        {!todoS.length && <WelcomeMsg msg="Enjoy your day!" />}
+        <WelcomeMsg todoList={todoS} msg="Enjoy your Day!" />
         <ItemContainer todoList={todoS} handleDelTodos={handleDelTodos} />
       </div>
     </>
