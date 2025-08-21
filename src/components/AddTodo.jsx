@@ -1,7 +1,9 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { MdAddBox } from "react-icons/md";
+import { TodosContext } from "../store/todo-context-store";
 
-function AddTodo({ handleAddtodo }) {
+function AddTodo() {
+  const { addTodoItem } = useContext(TodosContext);
   // const [todoName, setTodoName] = useState("");
   // const [todoDate, setTodoDate] = useState("");
   const inputNameRef = useRef("");
@@ -9,11 +11,12 @@ function AddTodo({ handleAddtodo }) {
 
   const handleOnClickAddTodo = (event) => {
     event.preventDefault(); //it prevents the default behaviour of sending data to server via action attribute while submitting the form
-    // handleAddtodo(todoName, todoDate);
+    // addTodoItem(todoName, todoDate);
     // setTodoName("");
     // setTodoDate("");
-
-    handleAddtodo(inputNameRef.current.value, inputDateRef.current.value);
+    let todoName = inputNameRef.current.value;
+    let todoDate = inputDateRef.current.value;
+    addTodoItem(todoName, todoDate);
     inputNameRef.current.value = "";
     inputDateRef.current.value = "";
   };

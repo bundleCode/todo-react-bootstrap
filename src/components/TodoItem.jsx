@@ -1,6 +1,10 @@
 // import styles from "./TodoItem.module.css";
 
-function TodoItem({ id, itemName, itemDate, handleDelTodo }) {
+import { useContext } from "react";
+import { TodosContext } from "../store/todo-context-store";
+
+function TodoItem({ id, itemName, itemDate }) {
+  const { delTodoItem } = useContext(TodosContext);
   return (
     <>
       <div className="row mb-1">
@@ -14,7 +18,7 @@ function TodoItem({ id, itemName, itemDate, handleDelTodo }) {
           <button
             type="button"
             className="btn btn-danger width rounded-0"
-            onClick={() => handleDelTodo(id)}
+            onClick={() => delTodoItem(id)}
           >
             <i className="bi bi-trash"></i>
             <span className="d-none d-md-inline">Delete</span>

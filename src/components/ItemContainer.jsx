@@ -1,14 +1,17 @@
 import TodoItem from "./TodoItem";
-const ItemContainer = ({ todoList, handleDelTodos }) => {
+import { useContext } from "react";
+import { TodosContext } from "../store/todo-context-store";
+
+const ItemContainer = () => {
+  const { todoS } = useContext(TodosContext);
   return (
     <>
-      {todoList.map((itemTodo) => (
+      {todoS.map((itemTodo) => (
         <TodoItem
           key={itemTodo.id}
           id={itemTodo.id}
           itemName={itemTodo.name}
           itemDate={itemTodo.dueDate}
-          handleDelTodo={handleDelTodos}
         />
       ))}
     </>
