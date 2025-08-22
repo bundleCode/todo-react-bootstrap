@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from "react";
+import { useRef, useContext } from "react";
 import { MdAddBox } from "react-icons/md";
 import { TodosContext } from "../store/todo-context-store";
 
